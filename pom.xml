@@ -32,7 +32,7 @@
     <!-- Please note that when updating this dependency -->
     <!-- (i.e. due to a security vulnerability or bug) that the -->
     <!-- corresponding server dependency also needs updating.-->
-    <reactor-bom.version>Dysprosium-SR20</reactor-bom.version>
+    <reactor.version>3.4.7</reactor.version>
     <rxjava.version>2.2.21</rxjava.version>
     <slf4j-api.version>1.7.31</slf4j-api.version>
     <hamcrest-junit.version>2.0.0.0</hamcrest-junit.version>
@@ -90,10 +90,8 @@
       </dependency>
       <dependency>
         <groupId>io.projectreactor</groupId>
-        <artifactId>reactor-bom</artifactId>
-        <version>${reactor-bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+        <artifactId>reactor-core</artifactId>
+        <version>${reactor.version}</version>
       </dependency>
 
       <!--Compile dependencies only used by Examples-->
@@ -111,6 +109,12 @@
       </dependency>
 
       <!-- Test dependencies -->
+      <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-test</artifactId>
+        <version>${reactor.version}</version>
+        <scope>test</scope>
+      </dependency>
       <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-junit</artifactId>
