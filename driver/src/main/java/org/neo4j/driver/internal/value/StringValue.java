@@ -53,6 +53,14 @@ public class StringValue extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        if (String.class.equals(targetClass)) {
+            return targetClass.cast(val);
+        }
+        return asMapped(targetClass);
+    }
+
+    @Override
     public String toString() {
         return String.format("\"%s\"", val.replace("\"", "\\\""));
     }

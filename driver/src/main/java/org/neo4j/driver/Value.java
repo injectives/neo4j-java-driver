@@ -512,6 +512,17 @@ public interface Value extends MapAccessor, MapAccessorWithDefaultValue {
      */
     <T> Map<String, T> asMap(Function<Value, T> mapFunction, Map<String, T> defaultValue);
 
+    /**
+     * todo
+     * @param targetClass todo
+     * @return todo
+     * @param <T> todo
+     */
+    default <T> T as(Class<T> targetClass) {
+        // for backwards compatibility only
+        throw new UnsupportedOperationException("not supported");
+    }
+
     @Override
     boolean equals(Object other);
 

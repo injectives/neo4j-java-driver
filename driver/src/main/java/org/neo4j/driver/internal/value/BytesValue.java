@@ -53,6 +53,14 @@ public class BytesValue extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        if (byte[].class.isAssignableFrom(targetClass) || Byte[].class.isAssignableFrom(targetClass)) {
+            targetClass.cast(asByteArray());
+        }
+        return asMapped(targetClass);
+    }
+
+    @Override
     public Type type() {
         return InternalTypeSystem.TYPE_SYSTEM.BYTES();
     }

@@ -43,6 +43,14 @@ public final class NullValue extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        if (String.class.equals(targetClass)) {
+            return targetClass.cast(asString());
+        }
+        return null;
+    }
+
+    @Override
     public Type type() {
         return InternalTypeSystem.TYPE_SYSTEM.NULL();
     }

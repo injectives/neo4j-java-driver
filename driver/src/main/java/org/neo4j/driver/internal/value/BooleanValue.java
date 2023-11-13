@@ -60,6 +60,14 @@ public abstract class BooleanValue extends ValueAdapter {
         }
 
         @Override
+        public <T> T as(Class<T> targetClass) {
+            if (boolean.class.equals(targetClass) || Boolean.class.equals(targetClass)) {
+                return targetClass.cast(Boolean.TRUE);
+            }
+            return asMapped(targetClass);
+        }
+
+        @Override
         public boolean isTrue() {
             return true;
         }
@@ -85,6 +93,14 @@ public abstract class BooleanValue extends ValueAdapter {
         @Override
         public boolean asBoolean() {
             return false;
+        }
+
+        @Override
+        public <T> T as(Class<T> targetClass) {
+            if (boolean.class.equals(targetClass) || Boolean.class.equals(targetClass)) {
+                return targetClass.cast(Boolean.FALSE);
+            }
+            return asMapped(targetClass);
         }
 
         @Override

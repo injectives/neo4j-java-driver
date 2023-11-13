@@ -51,6 +51,12 @@ public class MapValue extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        // todo
+        return null;
+    }
+
+    @Override
     public Map<String, Object> asMap() {
         return Extract.map(val, ofObject());
     }

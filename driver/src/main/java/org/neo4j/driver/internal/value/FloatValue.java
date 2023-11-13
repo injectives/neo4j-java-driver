@@ -75,6 +75,26 @@ public class FloatValue extends NumberValueAdapter<Double> {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        if (Number.class.equals(targetClass)) {
+            return targetClass.cast(asNumber());
+        }
+        if (long.class.isAssignableFrom(targetClass) || Long.class.isAssignableFrom(targetClass)) {
+            return targetClass.cast(asLong());
+        }
+        if (int.class.isAssignableFrom(targetClass) || Integer.class.isAssignableFrom(targetClass)) {
+            return targetClass.cast(asInt());
+        }
+        if (double.class.isAssignableFrom(targetClass) || Double.class.isAssignableFrom(targetClass)) {
+            return targetClass.cast(asDouble());
+        }
+        if (float.class.isAssignableFrom(targetClass) || Float.class.isAssignableFrom(targetClass)) {
+            return targetClass.cast(asFloat());
+        }
+        return asMapped(targetClass);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

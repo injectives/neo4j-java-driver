@@ -21,6 +21,8 @@
  */
 @SuppressWarnings({"requires-automatic", "requires-transitive-automatic"})
 module org.neo4j.driver {
+    uses org.neo4j.driver.value.ValueMapper;
+
     exports org.neo4j.driver;
     exports org.neo4j.driver.async;
     exports org.neo4j.driver.reactive;

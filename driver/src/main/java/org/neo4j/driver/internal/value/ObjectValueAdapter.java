@@ -39,6 +39,14 @@ public abstract class ObjectValueAdapter<V> extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        if (adapted.getClass().isAssignableFrom(targetClass)) {
+            return targetClass.cast(asObject());
+        }
+        return asMapped(targetClass);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

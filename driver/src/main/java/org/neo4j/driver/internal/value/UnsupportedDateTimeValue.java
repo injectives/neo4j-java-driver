@@ -43,6 +43,11 @@ public class UnsupportedDateTimeValue extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        throw instantiateDateTimeException();
+    }
+
+    @Override
     public Object asObject() {
         throw instantiateDateTimeException();
     }

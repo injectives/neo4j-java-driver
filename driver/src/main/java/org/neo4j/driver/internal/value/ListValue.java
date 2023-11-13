@@ -61,6 +61,11 @@ public class ListValue extends ValueAdapter {
     }
 
     @Override
+    public <T> T as(Class<T> targetClass) {
+        return null;
+    }
+
+    @Override
     public int size() {
         return values.length;
     }

@@ -114,27 +114,27 @@ public abstract class ValueAdapter extends InternalMapAccessorWithDefaultValue i
 
     @Override
     public long asLong() {
-        throw new Uncoercible(type().name(), "Java long");
+        return asMapped(Long.class, "Java long");
     }
 
     @Override
     public int asInt() {
-        throw new Uncoercible(type().name(), "Java int");
+        return asMapped(Integer.class, "Java int");
     }
 
     @Override
     public float asFloat() {
-        throw new Uncoercible(type().name(), "Java float");
+        return asMapped(Float.class, "Java float");
     }
 
     @Override
     public double asDouble() {
-        throw new Uncoercible(type().name(), "Java double");
+        return asMapped(Double.class, "Java double");
     }
 
     @Override
     public boolean asBoolean() {
-        throw new Uncoercible(type().name(), "Java boolean");
+        return asMapped(Boolean.class, "Java boolean");
     }
 
     @Override
@@ -237,12 +237,12 @@ public abstract class ValueAdapter extends InternalMapAccessorWithDefaultValue i
 
     @Override
     public byte[] asByteArray() {
-        throw new Uncoercible(type().name(), "Byte array");
+        return asMapped(byte[].class, "Byte array");
     }
 
     @Override
     public Number asNumber() {
-        throw new Uncoercible(type().name(), "Java Number");
+        return asMapped(Number.class, "Java Number");
     }
 
     @Override
@@ -267,32 +267,32 @@ public abstract class ValueAdapter extends InternalMapAccessorWithDefaultValue i
 
     @Override
     public LocalDate asLocalDate() {
-        throw new Uncoercible(type().name(), "LocalDate");
+        return asMapped(LocalDate.class, "LocalDate");
     }
 
     @Override
     public OffsetTime asOffsetTime() {
-        throw new Uncoercible(type().name(), "OffsetTime");
+        return asMapped(OffsetTime.class, "OffsetTime");
     }
 
     @Override
     public LocalTime asLocalTime() {
-        throw new Uncoercible(type().name(), "LocalTime");
+        return asMapped(LocalTime.class, "LocalTime");
     }
 
     @Override
     public LocalDateTime asLocalDateTime() {
-        throw new Uncoercible(type().name(), "LocalDateTime");
+        return asMapped(LocalDateTime.class, "LocalDateTime");
     }
 
     @Override
     public OffsetDateTime asOffsetDateTime() {
-        throw new Uncoercible(type().name(), "OffsetDateTime");
+        return asMapped(OffsetDateTime.class, "OffsetDateTime");
     }
 
     @Override
     public ZonedDateTime asZonedDateTime() {
-        throw new Uncoercible(type().name(), "ZonedDateTime");
+        return asMapped(ZonedDateTime.class, "ZonedDateTime");
     }
 
     @Override
@@ -343,6 +343,16 @@ public abstract class ValueAdapter extends InternalMapAccessorWithDefaultValue i
     @Override
     public final TypeConstructor typeConstructor() {
         return ((TypeRepresentation) type()).constructor();
+    }
+
+    protected <T> T asMapped(Class<T> targetClass) {
+        return asMapped(targetClass, targetClass.getCanonicalName());
+    }
+
+    protected <T> T asMapped(Class<T> targetClass, String destinationTypeName) {
+        return ValueMapperProvider.mapper(type(), targetClass)
+                .map(mapper -> mapper.map(this, targetClass))
+                .orElseThrow(() -> new Uncoercible(type().name(), destinationTypeName));
     }
 
     // Force implementation

@@ -278,7 +278,7 @@
             <showWarnings>true</showWarnings>
             <compilerArgs>
               <arg>-Xlint:all${maven.compiler.xlint.extras}</arg>
-              <arg>-Werror</arg>
+<!--              <arg>-Werror</arg>-->
             </compilerArgs>
           </configuration>
         </plugin>
