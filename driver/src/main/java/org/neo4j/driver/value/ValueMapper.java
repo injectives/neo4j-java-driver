@@ -23,9 +23,9 @@ import org.neo4j.driver.types.Type;
 
 /**
  * todo
- * @param <D> todo
+ * @param <T> todo
  */
-public interface ValueMapper<D> {
+public interface ValueMapper<T> {
     /**
      * todo
      * @param valueType todo
@@ -40,5 +40,5 @@ public interface ValueMapper<D> {
      * @param targetClass todo
      * @return todo
      */
-    D map(Value value, Class<D> targetClass);
+    T map(Value value, Class<T> targetClass);
 }
